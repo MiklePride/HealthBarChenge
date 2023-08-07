@@ -3,17 +3,17 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private UnityEvent<int> _healthChenged;
-
     private int _maxHealth = 100;
     private float _health;
+
+    public static UnityAction<int> HealthChenged;
 
     private void Awake()
     {
         _health = _maxHealth;
     }
 
-    public void Healing()
+    public void Heal()
     {
         int healPoint = 10;
 
@@ -29,14 +29,9 @@ public class Player : MonoBehaviour
 
     private void ChengeHealth(int value)
     {
-        _health += value;
+        int minHealth = 0;
+        _health += Mathf.Clamp(value, minHealth, _maxHealth);
 
-        if (_health < 0)
-            _health = 0;
-
-        if (_health > _maxHealth)
-            _health = _maxHealth;
-
-        _healthChenged.Invoke(value);
+        HealthChenged.Invoke(value);
     }
 }
