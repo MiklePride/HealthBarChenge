@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Image))]                                                                             
 
@@ -18,10 +17,15 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.HealthChenged += ChengeHealth;
+        Player.HealthChenged += OnChengeHealth;
     }
 
-    public void ChengeHealth(int value)
+    private void OnDestroy()
+    {
+        Player.HealthChenged -= OnChengeHealth;
+    }
+
+    public void OnChengeHealth(int value)
     {
         float maxPercent = 100f;
         float valueAsPercentage = value / maxPercent;
