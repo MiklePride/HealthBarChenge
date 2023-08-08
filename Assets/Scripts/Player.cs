@@ -1,12 +1,12 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     private int _maxHealth = 100;
     private float _health;
 
-    public static UnityAction<int> HealthChenged;
+    public static Action<int> HealthChenged;
 
     private void Awake()
     {
