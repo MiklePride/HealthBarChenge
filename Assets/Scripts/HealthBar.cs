@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    [SerializeField]private Player _player;
+
     private Coroutine _drowHealth;
     private Image _healthBarFilling;
     private float _duration = 0.5f;
@@ -17,12 +19,12 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.HealthChenged += OnChengeHealth;
+        _player.HealthChenged += OnChengeHealth;
     }
 
     private void OnDestroy()
     {
-        Player.HealthChenged -= OnChengeHealth;
+        _player.HealthChenged -= OnChengeHealth;
     }
 
     public void OnChengeHealth(int value)
