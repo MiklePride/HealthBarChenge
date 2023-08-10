@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     private int _maxHealth = 100;
     private float _health;
+
     public Action<int> HealthChenged;
 
     private void Awake()
